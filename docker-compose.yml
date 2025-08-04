@@ -79,6 +79,18 @@ services:
     volumes:
       - ./apps/payment-service:/usr/src/app
 
+  integration-service:
+    build: ./apps/integration-service
+    command: npm run start:dev
+    ports:
+      - "4005:4005"
+    env_file:
+      - ./apps/integration-service/.env.example
+    depends_on:
+      - redis
+    volumes:
+      - ./apps/integration-service:/usr/src/app
+
   maildev:
     image: maildev/maildev
     ports:

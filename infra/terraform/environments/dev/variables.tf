@@ -33,7 +33,7 @@ variable "db_password" {
 }
 variable "services" {
   type = list(string)
-  default = ["api", "web", "eligibility-service", "document-service", "notification-service", "payment-service"]
+  default = ["api", "web", "eligibility-service", "document-service", "notification-service", "payment-service", "integration-service"]
 }
 variable "api_image" {
   type = string
