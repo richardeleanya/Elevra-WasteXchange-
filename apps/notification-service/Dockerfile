@@ -1,12 +1,19 @@
-FROM node:20-alpine
+FROM node:20-alpine AS builder
 
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 RUN npm install
-
 COPY . .
+RUN npm run build
 
+FROM node:20-alpine
+
+WORKDIR /usr/src/app
+COPY --from=builder /usr/src/app/dist ./dist
+COPY package*.json ./
+RUN npm install --omit=dev
+USER node
 EXPOSE 4003
 
-CMD ["npm", "run", "start:dev"]
+CMD ["node", "dist/main.js"]
