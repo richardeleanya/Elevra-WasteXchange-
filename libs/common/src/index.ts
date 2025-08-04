@@ -6,3 +6,4 @@ export * from './dto/household.dto';
 export * from './events/application.events';
 export * from './events/payment.events';
 export * from './events/notification.events';
+export * from './entities/payment.entity';

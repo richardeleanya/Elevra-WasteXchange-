@@ -11,16 +11,7 @@
   },
   "dependencies": {
     ...
-    "bcrypt": "^5.1.0",
-    "@nestjs/passport": "^10.0.0",
-    "@nestjs/jwt": "^10.0.0",
-    "passport": "^0.7.0",
-    "passport-local": "^1.0.0",
-    "passport-jwt": "^4.0.1",
-    "@nestjs/bull": "^0.8.4",
-    "bull": "^4.10.4",
-    "helmet": "^7.0.0",
-    "express-rate-limit": "^7.0.0"
+    "libs-common": "*"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.3.0",

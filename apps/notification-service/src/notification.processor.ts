@@ -14,7 +14,7 @@ const templates = {
   [EmailType.APPLICATION_APPROVED]: (params: any) =>
     `Good news! Your application was approved.`,
   [EmailType.INVOICE_CREATED]: (params: any) =>
-    `A new invoice has been generated for you.`,
+    `A new invoice has been generated for you. Pay it here: ${process.env.WEB_URL || 'http://web:3000'}/pay/${params.invoiceId}`,
   [EmailType.PAYMENT_SUCCEEDED]: (params: any) =>
     `Your payment was received. Thank you!`,
 };

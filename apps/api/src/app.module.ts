@@ -7,6 +7,7 @@ import { BenefitsModule } from './benefits/benefits.module';
 import { EligibilityModule } from './eligibility/eligibility.module';
 import { ApplicationsModule } from './applications/applications.module';
 import { InvoicesModule } from './invoices/invoices.module';
+import { PaymentsModule } from './payments/payments.module';
 import { ConfigModule } from '@nestjs/config';
 import { BullModule } from '@nestjs/bull';
 import { User } from './entities/user.entity';
