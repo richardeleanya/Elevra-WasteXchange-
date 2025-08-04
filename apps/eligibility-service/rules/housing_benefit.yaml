@@ -1,0 +1,7 @@
+code: "HOUSING_BENEFIT"
+name: "Housing Benefit"
+parameters:
+  - name: "housing"
+    value: "rented"
+  - name: "income"
+    value: "low"
