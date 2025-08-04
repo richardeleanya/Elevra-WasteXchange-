@@ -1,0 +1,15 @@
+[
+  {
+    "id": "housing_benefit",
+    "name": "Housing Benefit",
+    "criteria": {
+      "mandatory": [
+        { "field": "income", "op": "<", "value": 25000 },
+        { "field": "housing", "op": "==", "value": "rented" }
+      ],
+      "optional": [
+        { "field": "disability", "op": "==", "value": true }
+      ]
+    }
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "name": "autofundplus-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "scripts": {
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx --max-warnings=0",
+    "format": "prettier --write .",
+    "test": "echo 'Run tests from individual workspaces.'",
+    "dev": "echo 'Run dev scripts from apps.'"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  }
+}
