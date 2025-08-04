@@ -4,3 +4,5 @@ export * from './tracing.module';
 export * from './dto/user.dto';
 export * from './dto/household.dto';
 export * from './events/application.events';
+export * from './events/payment.events';
+export * from './events/notification.events';
