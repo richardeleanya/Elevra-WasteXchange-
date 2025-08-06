@@ -1,0 +1,4 @@
+[
+  { "code": "BENEFIT_A", "name": "Benefit A", "description": "Sample benefit A" },
+  { "code": "BENEFIT_B", "name": "Benefit B", "description": "Sample benefit B" }
+]

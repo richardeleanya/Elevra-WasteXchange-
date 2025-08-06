@@ -1,0 +1,129 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: autofund
+      POSTGRES_PASSWORD: autofund
+      POSTGRES_DB: autofund
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  api:
+    build: ./apps/api
+    command: npm run start:dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ./apps/api/.env.example
+    volumes:
+      - ./apps/api:/usr/src/app
+
+  eligibility-service:
+    build: ./apps/eligibility-service
+    command: npm run start:dev
+    ports:
+      - "4001:4001"
+    env_file:
+      - ./apps/eligibility-service/.env.example
+    depends_on:
+      - redis
+    volumes:
+      - ./apps/eligibility-service:/usr/src/app
+
+  document-service:
+    build: ./apps/document-service
+    command: npm run start:dev
+    ports:
+      - "4002:4002"
+    env_file:
+      - ./apps/document-service/.env.example
+    depends_on:
+      - redis
+    volumes:
+      - ./apps/document-service:/usr/src/app
+
+  notification-service:
+    build: ./apps/notification-service
+    command: npm run start:dev
+    ports:
+      - "4003:4003"
+    env_file:
+      - ./apps/notification-service/.env.example
+    depends_on:
+      - redis
+    volumes:
+      - ./apps/notification-service:/usr/src/app
+
+  payment-service:
+    build: ./apps/payment-service
+    command: npm run start:dev
+    ports:
+      - "4004:4004"
+    env_file:
+      - ./apps/payment-service/.env.example
+    depends_on:
+      - redis
+    volumes:
+      - ./apps/payment-service:/usr/src/app
+
+  integration-service:
+    build: ./apps/integration-service
+    command: npm run start:dev
+    ports:
+      - "4005:4005"
+    env_file:
+      - ./apps/integration-service/.env.example
+    depends_on:
+      - redis
+    volumes:
+      - ./apps/integration-service:/usr/src/app
+
+  maildev:
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.56
+    ports:
+      - "16686:16686"
+      - "14268:14268"
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3002:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+      - "4510-4559:4510-4559"
+    environment:
+      - SERVICES=s3
+
+volumes:
+  db_data:

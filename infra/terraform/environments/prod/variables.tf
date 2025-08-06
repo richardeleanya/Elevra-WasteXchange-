@@ -1,0 +1,1 @@
+# Copy of dev/variables.tf with prod values
